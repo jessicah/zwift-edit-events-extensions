@@ -125,18 +125,27 @@ function updateCourse()
 	if (debugLogging) console.log('Course Name', courseName);
 
 	var routes = $j(sections).find("div.route-select-area");
-	var routeInputs = $j(routes).find("input");
 
-	for (var ix = 0; ix < routeInputs.length; ++ix) {
-		var input = routeInputs[ix];
+	for (var ix = 0; ix < routes.length; ++ix) {
+		var route = routes[ix];
 
-		if (debugLogging) console.log('input', input);
+		if (debugLogging) console.log('route', route);
+
+		var span = $j(route).find('input').next('span');
 
 		var evnt = document.createEvent('HTMLEvents');
-		evnt.initEvent('change', true, true);
-		input.placeholder = courseName;
-		input.dispatchEvent(evnt);
+		evnt.initEvent('click', true, true);
+
+		span[0].dispatchEvent(evnt);
+
+		var div = $j(route).find(`div.ml-2 > div:contains(${courseName})`);
+		var parentDiv = $j(div).parent().parent().parent();
+
+		parentDiv[0].dispatchEvent(evnt);
 	}
+
+	var label = $j(sections[1]).find('label:contains(Duration Type)');
+	label[0].scrollIntoView();
 
 	insideRouteChange = false;
 }
