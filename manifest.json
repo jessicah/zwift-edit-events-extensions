@@ -11,7 +11,7 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["https://*.zwift.com/*/clubs/brt/event/*/edit"],
+			"matches": ["https://*.zwift.com/*/clubs/*/event/*/edit", "https://*.zwift.com/clubs/*/event/*/edit"],
 			"js": ["jquery.js", "edit-all-cats.js"]
 		}
 	]
